@@ -4,10 +4,7 @@ const dbURL = process.env.DB_URL;
 
 const connectToDb = () => {
   mongoose
-    .connect(dbURL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    .connect(dbURL)
     .then(() => {
       console.log("MongoDB Atlas CONNECTED!");
     })

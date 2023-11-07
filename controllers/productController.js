@@ -18,3 +18,31 @@ exports.getAllProducts = async(req, res) => {
     console.status(500).json({ error: 'Error search products!!' })
   }
 }
+
+exports.updateProduct = async (req, res) => {
+  try {
+    const productId = req.params.id
+    const product = await Product.findByIdAndUpdate(productId, req.body, {new: true});
+    if (!product) {
+      return res.status(404).json({ error: 'Product Not found!' });
+    }
+    res.status(200).json(product);
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).json({ error: "Error update product!" });
+  }
+}
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    const productId = req.params.id
+    const product = await Product.findByIdAndDelete(productId);
+    if (!product) {
+      res.status(404).json({ error: 'Product Not Found!' });
+    }
+    res.status(204).end();
+  } catch(error) {
+    console.error("Error delete product: ", error);
+    res.status(500).json({ error: 'Error delete product!' });
+  }
+}
