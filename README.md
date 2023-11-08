@@ -1,8 +1,7 @@
 ### Shopping list
 - name 
 - price
-- link of product
-- photo
+- date
 
 ### Express
 
